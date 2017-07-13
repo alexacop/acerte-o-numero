@@ -47,25 +47,29 @@ while True:
         else:
             mensagem = int(mensagem)
 
+            if(qtdTentivas == 0):
+                conn.send('Que pena, você atingiu o limite de tentativas. ')
+                conn.send('Pressione q para sair.')
+                break
             if(mensagem > num_rand100):
-            	conn.send('O número procurado é menor que o número inserido.')
+            	conn.send('O número procurado é menor que o número inserido. ')
                 qtdTentivas = qtdTentivas - 1
                 qtdTentivas = str(qtdTentivas)
-                conn.send('\n')
                 conn.send('Quantidade de tentivas restantes: ' + qtdTentivas)
                 qtdTentivas = int(qtdTentivas)
             elif(mensagem < num_rand100):
-            	conn.send('O número procurado é maior que o número inserido.')
+            	conn.send('O número procurado é maior que o número inserido. ')
                 qtdTentivas = qtdTentivas - 1
                 qtdTentivas = str(qtdTentivas)
-                conn.send('\n')
                 conn.send('Quantidade de tentivas restantes: ' + qtdTentivas)
                 qtdTentivas = int(qtdTentivas)
             else:
-            	conn.send('Parabéns, você acertou o número.')
-                conn.send('\n')
-                conn.send('Pressione q para sair')
+            	conn.send('Parabéns, você acertou.')
+                conn.send('Pressione q para sair.')
                 break
 
     print 'Conexão com o cliente encerrada', cliente
     conn.close()
+    num_rand100 = randint(0, 100)
+    num_rand1000 = randint(0, 1000)
+    num_rand10000 = randint(0, 10000)
